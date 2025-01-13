@@ -1,0 +1,20 @@
+{
+  "name": "web_extension",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "icojs": "^0.19.4",
+    "linkedom": "^0.18.6",
+    "mime": "^4.0.6",
+    "sharp": "^0.33.5",
+    "sqlite3": "^5.1.7"
+  }
+}

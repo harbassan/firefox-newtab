@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+}
+
+body {
+  background-color: #131111;
+}
+
+.shortcuts-input {
+  opacity: 0;
+  position: absolute; 
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 2rem;
+}
+
+.logo {
+  width: 4rem;
+  height: 4rem;
+  display: block;
+}
+
+.heading {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  font-size: 3rem;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 4rem;
+}
+
+.heading div {
+  width: 10rem;
+}
+
+.heading div:first-child {
+  text-align: right;
+}
+
+.jersey-15-regular {
+  font-family: "Jersey 15", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.search {
+  color: white;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search input {
+  color: white;
+  font-size: 2rem;
+  border: none;
+  border-bottom: 2px solid white;
+  background-color: transparent;
+  width: 40vw;
+}
+
+.search input:focus-visible {
+  outline: none;
+}
+
+.container {
+  display: flex;
+  gap: 2rem;
+  padding-top: 4rem;
+  /* to maintain layout before content load */
+  height: 13rem;
+}
+
+.thumb {
+  cursor: pointer;
+}
+
+.thumb .img-wrapper {
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0c0a0a;
+}
+
+.thumb img[data-width="16"],
+.thumb img[data-width="32"] {
+  width: 2rem;
+  height: 2rem;
+}
+
+.thumb img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.thumb h4 {
+  color: white;
+  font-weight: 100;
+  text-align: center;
+}
+
+.thumb a {
+  text-decoration: none;
+}
+
+.tab-container {
+	display: flex;
+  height: 2rem;
+}
+
+.tab-container div {
+	padding: 0.4rem 1rem;
+	border-bottom: 2px solid grey;
+	color: grey;
+  cursor: pointer;
+}
+
+.tab-container div.active {
+  color: white;
+  border-color: white;
+}
+
+.headline {
+	width: 50vw;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: white;
+  text-align: center;
+}
+
+.headline a {
+	color: white;
+	text-decoration: none;
+}
+
+.headlines-wrapper {
+	display: flex;
+	width: max-content;
+	gap: 2rem;
+	list-style-type: none;
+	padding: 0;
+}
+
+.headlines-container {
+	width: 50vw;
+	overflow: hidden;
+	position: absolute;
+	bottom: 2rem;
+	margin: 0 25vw;
+}
