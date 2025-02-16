@@ -74,7 +74,7 @@ export function open_bookmark_by_shortcut_g(input) {
 
 export function open_all() {
   for (const bookmark of active_folder.node.children) {
-    window.location.href = bookmark.url;
+    window.open(bookmark.url, "_blank");
   }
 }
 
