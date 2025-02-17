@@ -1,19 +1,40 @@
 import * as bookmarks_manager from "./bookmarks_manager.js";
+import bangs from "./bangs.js";
 
 const search_input = document.querySelector(".search input");
 const shortcuts_input = document.querySelector(".shortcuts-input");
+const bang_el = document.querySelector(".bang");
 
 let shortcut_context = bookmarks_manager.open_bookmark_by_shortcut;
 let is_unloading = false;
+let active_bang = "";
+let is_banging = false;
 
 function search(input) {
   const encoded = encodeURIComponent(input.trim());
-  let query = `https://search.brave.com/search?q=${encoded}`
+  let query = `https://search.brave.com/search?q=${active_bang} ${encoded}`
   const regexp = /\.[a-zA-Z]{2,63}/;
   if (encoded.match(regexp)) {
     query = encoded.startsWith("http") ? encoded : `https://${encoded}`;
   };
   window.open(query, "_self");
+}
+
+function set_bang(bang) {
+  const title = bangs[bang];
+  if (!title) return;
+
+  bang_el.textContent = title.toLocaleLowerCase();
+  active_bang = bang;
+  search_input.value = "";
+  bang_el.classList.remove("hidden");
+}
+
+function clear_bang() {
+  is_banging = false;
+  active_bang = "";
+  bang_el.textContent = "";
+  bang_el.classList.add("hidden");
 }
 
 search_input.addEventListener("keydown", (event) => {
@@ -22,6 +43,13 @@ search_input.addEventListener("keydown", (event) => {
   } else if (event.key === "Escape") {
     shortcuts_input.focus();
     search_input.value = "";
+    clear_bang();
+  } else if (event.key === "!" && search_input.value.length === 0) {
+    is_banging = true;
+  } else if (event.key === " " && is_banging) {
+    event.preventDefault();
+    is_banging = false;
+    set_bang(search_input.value);
   }
 })
 
