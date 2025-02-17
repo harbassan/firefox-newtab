@@ -72,6 +72,13 @@ document.addEventListener("keydown", (event) => {
       shortcuts_input.value = "";
       search_input.focus();
       break;
+    case "!":
+      event.preventDefault();
+      shortcuts_input.value = "";
+      search_input.value = "!";
+      is_banging = true;
+      search_input.focus();
+      break;
     case ".":
       event.preventDefault();
       bookmarks_manager.open_all();
