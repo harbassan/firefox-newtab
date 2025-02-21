@@ -158,6 +158,7 @@ function get_all_folders() {
       const folders = {};
 
       for (const item of items) {
+        if (item.title === null) continue;
         if (item.type === 2) {
           if (folders[item.id]) {
             folders[item.id] = { ...minify_item(item), children: folders[item.id].children };
