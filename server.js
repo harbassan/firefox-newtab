@@ -3,12 +3,13 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from 'url';
 import mime from "mime";
+import "dotenv/config";
 
 import load_bookmarks from "./bookmarks.js";
 import load_headlines from "./headlines.js";
 
 const hostname = "127.0.0.1";
-const port = "3000";
+const port = `${process.env.PORT || 3000}`;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.join(path.dirname(__filename), "/served");
