@@ -1,6 +1,11 @@
 import * as bookmarks_manager from "./bookmarks_manager.js";
 import bangs from "./bangs.js";
 
+const config = {
+  DEFAULT_SEARCH_ENGINE: "https://encrypted.google.com/search?q={{{s}}}",
+  BANG_SEARCH_ENGINE: "https://duckduckgo.com/?q={{{s}}}"
+}
+
 const search_input = document.querySelector(".search input");
 const shortcuts_input = document.querySelector(".shortcuts-input");
 const bang_el = document.querySelector(".bang");
@@ -11,12 +16,18 @@ let active_bang = "";
 let is_banging = false;
 
 function search(input) {
-  const encoded = encodeURIComponent(input.trim());
-  let query = `https://search.brave.com/search?q=${active_bang} ${encoded}`
+  let query = input.trim();
+  const encoded = encodeURIComponent(query);
   const regexp = /\.[a-zA-Z]{2,63}/;
-  if (encoded.match(regexp)) {
-    query = encoded.startsWith("http") ? encoded : `https://${encoded}`;
-  };
+
+  if (query.match(regexp)) {
+    query = query.startsWith("http") ? query : `https://${query}`;
+  } else if (!active_bang) {
+    query = config.DEFAULT_SEARCH_ENGINE.replace("{{{s}}}", encoded);
+  } else {
+    query = config.BANG_SEARCH_ENGINE.replace("{{{s}}}", `${active_bang} ${encoded}`);
+  }
+
   window.open(query, "_self");
 }
 
