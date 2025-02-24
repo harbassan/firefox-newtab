@@ -83,6 +83,7 @@ document.addEventListener("keydown", (event) => {
       shortcuts_input.value = "";
       search_input.focus();
       break;
+    case "'":
     case "!":
       event.preventDefault();
       shortcuts_input.value = "";
