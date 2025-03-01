@@ -3,7 +3,6 @@ import bangs from "./bangs.js";
 
 const config = {
   DEFAULT_SEARCH_ENGINE: "https://encrypted.google.com/search?q={{{s}}}",
-  BANG_SEARCH_ENGINE: "https://duckduckgo.com/?q={{{s}}}"
 }
 
 const search_input = document.querySelector(".search input");
@@ -12,7 +11,7 @@ const bang_el = document.querySelector(".bang");
 
 let shortcut_context = bookmarks_manager.open_bookmark_by_shortcut;
 let is_unloading = false;
-let active_bang = "";
+let active_bang = null;
 let is_banging = false;
 
 function search(input) {
@@ -25,25 +24,25 @@ function search(input) {
   } else if (!active_bang) {
     query = config.DEFAULT_SEARCH_ENGINE.replace("{{{s}}}", encoded);
   } else {
-    query = config.BANG_SEARCH_ENGINE.replace("{{{s}}}", `${active_bang} ${encoded}`);
+    query = active_bang.url.replace("{{{s}}}", encoded)
   }
 
-  window.open(query, "_self");
+  window.location.replace(query);
 }
 
 function set_bang(bang) {
-  const title = bangs[bang];
-  if (!title) return;
+  const bang_obj = bangs[bang.slice(1)];
+  if (!bang_obj) return;
 
-  bang_el.textContent = title.toLocaleLowerCase();
-  active_bang = bang;
+  bang_el.textContent = bang_obj.name.toLocaleLowerCase();
+  active_bang = bang_obj;
   search_input.value = "";
   bang_el.classList.remove("hidden");
 }
 
 function clear_bang() {
   is_banging = false;
-  active_bang = "";
+  active_bang = null;
   bang_el.textContent = "";
   bang_el.classList.add("hidden");
 }

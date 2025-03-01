@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const map = {};
 for (const bang of bangs) {
-  map[bang.bang] = bang.title;
+  map[bang.t] = { bang: bang.t, name: bang.s, url: bang.u };
 }
 
 await fs.writeFile(path.join(__dirname, "/served/bangs.js"), `export default ${JSON.stringify(map)}`);
