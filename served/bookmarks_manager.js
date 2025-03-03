@@ -13,7 +13,11 @@ function generate_link(bookmark) {
   <div class="thumb">
     <a href="${url}">
       <div class="img-wrapper">
-        <img data-width="${icon?.width}" data-url="${icon?.url}" src="${icon?.base64}"></img>
+        ${
+          icon?.url
+            ? `<img data-width="${icon?.width}" data-url="${icon?.url}" src="${icon?.base64}"></img>`
+            : `<div class="placeholder">${title[0].toLocaleUpperCase()}</div>`
+        }
       </div>
       <h4><u>${shortcut_l}</u>${title.slice(shortcut_l.length)}</h4>
     </a>

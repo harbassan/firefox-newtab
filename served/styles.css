@@ -136,6 +136,17 @@ body {
   height: 2.5rem;
 }
 
+.thumb .placeholder {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #141414;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: white;
+}
+
 .thumb h4 {
   color: white;
   font-weight: 100;
