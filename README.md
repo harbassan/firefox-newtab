@@ -1,5 +1,5 @@
-## firefox new tab
-custom new tab for firefox that shows yours bookmarks (organised in folders) and has some useful keyboard shortcuts.
+## custom new tab
+custom new tab that shows and allows you to properly manage bookmarks (organised in folders) and has some useful keyboard shortcuts.
 
 alters the ui slightly when using duck duck go's built in search [bangs](https://duckduckgo.com/bangs).
 
@@ -14,8 +14,13 @@ alters the ui slightly when using duck duck go's built in search [bangs](https:/
 
 where `<sc>` refers to the first characters needed to uniquely describe an item in the relevant context.
 
-### setup
-needs a .env with key FIREFOX_PF_PATH for getting bookmark info and NEWS_API_KEY for the headlines, via https://newsapi.org/. You can also specify a PORT key, the default port being 3000.
+### commands
+- `touch [pathname] [url]` [create a new bookmark with the given url]
+- `mkdir [title]` [create a new folder]
+- `rm [pathname]` [delete a folder or bookmark]
+- `mv [pathname] [pathname]` - [move/rename a given bookmark or folder]
+- `echo [url] [pathname]` [change the url for a given bookmark]
+- `update [pathname]` [trigger a re-parse of a given bookmark's icon]
 
 ---
 ![main](/imgs/main.png)
