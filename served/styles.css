@@ -181,8 +181,12 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: white;
+  color: grey;
   text-align: center;
+}
+
+.headline.error {
+  color: #772121;
 }
 
 .headline a {

@@ -1,5 +1,6 @@
 import * as bookmarks_manager from "./bookmarks_manager.js";
 import bangs from "./bangs.js";
+import { error } from "./status.js";
 
 const config = {
   DEFAULT_SEARCH_ENGINE: "https://encrypted.google.com/search?q={{{s}}}",
@@ -8,14 +9,36 @@ const config = {
 const search_input = document.querySelector(".search input");
 const shortcuts_input = document.querySelector(".shortcuts-input");
 const bang_el = document.querySelector(".bang");
+bookmarks_manager.load();
 
 let shortcut_context = bookmarks_manager.open_bookmark_by_shortcut;
 let is_unloading = false;
 let active_bang = null;
 let is_banging = false;
 
-function search(input) {
+function handle(input) {
   let query = input.trim();
+  const matches = query.match(/(?:[^\s"']+|"[^"]*"|'[^']*')+/g) || [];
+  const [command, ...args] = matches.map(s => s.replace(/^['"]|['"]$/g, ""));
+
+  if (command === "mkdir") {
+    bookmarks_manager.create_folder(args).catch(error);
+  } else if (command === "rm") {
+    bookmarks_manager.remove(args).catch(error);
+  } else if (command === "touch") {
+    bookmarks_manager.create_bookmark(args).catch(error);
+  } else if (command === "mv") {
+    bookmarks_manager.move(args).catch(error);
+  } else if (command === "echo") {
+    bookmarks_manager.change_url(args).catch(error);
+  } else if (command === "update") {
+    bookmarks_manager.update_icon(args).catch(error);
+  } else search(query);
+
+  search_input.value = "";
+}
+
+function search(query) {
   const encoded = encodeURIComponent(query);
   const regexp = /\.[a-zA-Z]{2,63}/;
 
@@ -49,7 +72,7 @@ function clear_bang() {
 
 search_input.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
-    search(search_input.value);
+    handle(search_input.value);
   } else if (event.key === "Escape") {
     shortcuts_input.focus();
     search_input.value = "";
