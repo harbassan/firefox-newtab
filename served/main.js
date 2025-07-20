@@ -9,6 +9,8 @@ const config = {
 const search_input = document.querySelector(".search input");
 const shortcuts_input = document.querySelector(".shortcuts-input");
 const bang_el = document.querySelector(".bang");
+const shortcuts_el = document.querySelector("#scs");
+const commands_el = document.querySelector("#cmds");
 bookmarks_manager.load();
 
 let shortcut_context = bookmarks_manager.open_bookmark_by_shortcut;
@@ -70,6 +72,25 @@ function clear_bang() {
   bang_el.classList.add("hidden");
 }
 
+function reset_shortcuts_input() {
+  shortcuts_input.value = "";
+  shortcut_context = bookmarks_manager.open_bookmark_by_shortcut;
+}
+
+function open_help(input) {
+  if (input === "c") {
+    commands_el.classList.remove("hidden");
+    shortcuts_el.classList.add("hidden");
+  } else if (input === "s") {
+    shortcuts_el.classList.remove("hidden");
+    commands_el.classList.add("hidden");
+  } else if (input === "x") {
+    shortcuts_el.classList.add("hidden");
+    commands_el.classList.add("hidden");
+  }
+  reset_shortcuts_input();
+}
+
 search_input.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     handle(search_input.value);
@@ -85,11 +106,6 @@ search_input.addEventListener("keydown", (event) => {
     set_bang(search_input.value);
   }
 })
-
-function reset_shortcuts_input() {
-  shortcuts_input.value = "";
-  shortcut_context = bookmarks_manager.open_bookmark_by_shortcut;
-}
 
 shortcuts_input.addEventListener("input", (event) => {
   if (is_unloading) return;
@@ -116,6 +132,11 @@ document.addEventListener("keydown", (event) => {
     case ".":
       event.preventDefault();
       bookmarks_manager.open_all();
+      break;
+    case "?":
+      event.preventDefault()
+      shortcuts_input.value = "";
+      shortcut_context = open_help;
       break;
     case ";":
       event.preventDefault();

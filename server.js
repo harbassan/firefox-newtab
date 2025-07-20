@@ -8,7 +8,7 @@ import "dotenv/config";
 import { get_entry } from "./registry.js";
 
 const is_prod = process.env.NODE_ENV === "production";
-const port = is_prod ? 8080 : 3005;
+const port = is_prod ? 8080 : 3001;
 const hostname = is_prod ? "0.0.0.0" : "127.0.0.1";
 
 const __filename = fileURLToPath(import.meta.url);

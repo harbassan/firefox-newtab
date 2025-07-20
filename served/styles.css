@@ -209,3 +209,19 @@ body {
   bottom: 2rem;
   margin: 0 25vw;
 }
+
+.helper-container {
+  background-color: #0c0a0a;
+  color: white;
+  position: absolute;
+  left: 2rem;
+  bottom: 2rem;
+  padding: 1rem;
+  line-height: 1.4em;
+}
+
+.helper-container ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
