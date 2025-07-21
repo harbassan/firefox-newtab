@@ -1,6 +1,5 @@
 # Stores
-store.js
-headlines_store.js
+bookmarks.db
 
 # Logs
 logs
