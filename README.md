@@ -11,6 +11,9 @@ alters the ui slightly when using duck duck go's built in search [bangs](https:/
 - ` <sc>` [open from all folders]
 - `;<sc>` [switch folder] 
 - `Esc` [clear all input and unfocus all]
+- `?c` [list all commands]
+- `?s` [list all shortcuts]
+- `?x` [hide help modal]
 
 where `<sc>` refers to the first characters needed to uniquely describe an item in the relevant context.
 
