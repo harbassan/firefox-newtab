@@ -8,6 +8,7 @@ const config = {
 
 const search_input = document.querySelector(".search input");
 const shortcuts_input = document.querySelector(".shortcuts-input");
+const shortcuts_context_el = document.querySelector(".shortcuts-context");
 const bang_el = document.querySelector(".bang");
 const shortcuts_el = document.querySelector("#scs");
 const commands_el = document.querySelector("#cmds");
@@ -74,6 +75,7 @@ function clear_bang() {
 
 function reset_shortcuts_input() {
   shortcuts_input.value = "";
+  shortcuts_context_el.textContent = "";
   shortcut_context = bookmarks_manager.open_bookmark_by_shortcut;
 }
 
@@ -118,16 +120,17 @@ document.addEventListener("keydown", (event) => {
   switch (event.key) {
     case "/":
       event.preventDefault();
-      shortcuts_input.value = "";
+      reset_shortcuts_input();
       search_input.focus();
       break;
     case "'":
     case "!":
       event.preventDefault();
       shortcuts_input.value = "";
-      search_input.value = "!";
+      reset_shortcuts_input();
       is_banging = true;
       search_input.focus();
+      search_input.value = "!";
       break;
     case ".":
       event.preventDefault();
@@ -136,16 +139,19 @@ document.addEventListener("keydown", (event) => {
     case "?":
       event.preventDefault()
       shortcuts_input.value = "";
+      shortcuts_context_el.textContent = "?";
       shortcut_context = open_help;
       break;
     case ";":
       event.preventDefault();
       shortcuts_input.value = "";
+      shortcuts_context_el.textContent = "f";
       shortcut_context = bookmarks_manager.set_folder_by_shortcut;
       break;
     case " ":
       event.preventDefault();
       shortcuts_input.value = "";
+      shortcuts_context_el.textContent = "g";
       shortcut_context = bookmarks_manager.open_bookmark_by_shortcut_g;
       break;
     case "Escape":
