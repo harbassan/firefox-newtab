@@ -1,6 +1,7 @@
 import { add_bookmark, add_folder, get_all, get_joined, get_one, remove_bookmark, update_attribute } from "./db/bookmarks.js";
 import { get_icon } from "./db/images.js";
 import find_icon from "./parser.js";
+import { get_cs_q, get_quote } from "./tip_manager.js";
 
 const static_registry = {};
 const dynamic_registry = [];
@@ -142,3 +143,18 @@ register("POST", "/bookmarks", (req, res) => {
     });
 });
 
+register("GET", "/tip/:source", async (req, res) => {
+    const source = req.params.source;
+    let result;
+    if (source === "csq") {
+        result = get_cs_q();
+    } else if (source === "quote") {
+        result = await get_quote();
+    } else {
+        res.writeHead(500, { "content-type": "text/plain" });
+        res.end(`bad request: source must be either csq or quote`);
+        return;
+    }
+    res.writeHead(200, { "content-type": "text/plain" });
+    res.end(result);
+});

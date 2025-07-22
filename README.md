@@ -21,9 +21,10 @@ where `<sc>` refers to the first characters needed to uniquely describe an item 
 - `touch [pathname] [url]` [create a new bookmark with the given url]
 - `mkdir [title]` [create a new folder]
 - `rm [pathname]` [delete a folder or bookmark]
-- `mv [pathname] [pathname]` - [move/rename a given bookmark or folder]
+- `mv [pathname] [pathname]` [move/rename a given bookmark or folder]
 - `echo [url] [pathname]` [change the url for a given bookmark]
 - `update [pathname]` [trigger a re-parse of a given bookmark's icon]
+- `tip [toggle|source [csq|quote]]` [toggle/configure the statusline tip]
 
 ---
 ![main](/imgs/main.png)

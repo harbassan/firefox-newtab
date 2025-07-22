@@ -1,6 +1,9 @@
 import * as bookmarks_manager from "./bookmarks_manager.js";
-import bangs from "./bangs.js";
+import bangs from "./data/bangs.js";
 import { error } from "./status.js";
+import * as tip_manager from "./tip.js";
+
+tip_manager.generate();
 
 const config = {
   DEFAULT_SEARCH_ENGINE: "https://encrypted.google.com/search?q={{{s}}}",
@@ -36,6 +39,8 @@ function handle(input) {
     bookmarks_manager.change_url(args).catch(error);
   } else if (command === "update") {
     bookmarks_manager.update_icon(args).catch(error);
+  } else if (command === "tip") {
+    try { tip_manager.handle(args); } catch (e) { error(e); }
   } else search(query);
 
   search_input.value = "";

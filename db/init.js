@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 import path from "path";
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.join(path.dirname(__filename), "../data");
+const __dirname = path.dirname(__filename);
 
 sqlite3.verbose();
 
