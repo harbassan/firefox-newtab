@@ -86,7 +86,7 @@ export function open_bookmark_by_shortcut_g(input) {
 }
 
 export function open_all() {
-  for (const bookmark of bookmarks.find(bm => bm.parent === active_folder)) {
+  for (const bookmark of bookmarks.filter(bm => bm.parent === active_folder)) {
     window.open(bookmark.url, "_blank");
   }
 }
